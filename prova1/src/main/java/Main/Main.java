@@ -31,6 +31,8 @@ abstract public class Main {
 		Data_v2.Associate ass = new Data_v2.Associate();
 		ass.matrixCreation(LN, Y, S, MEUR, GDP);
 		
+		statistics_calculus prova = new statistics_calculus();
+		prova.calculate();
 
 		
 		
