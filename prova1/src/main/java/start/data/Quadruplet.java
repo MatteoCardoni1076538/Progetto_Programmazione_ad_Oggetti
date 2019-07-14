@@ -2,7 +2,7 @@ package start.data;
 
 public class Quadruplet {
 	public String name = new String();
-	private Float MEUR;
+	public Float MEUR;
 	public Float GDP;
 	public int year;
 

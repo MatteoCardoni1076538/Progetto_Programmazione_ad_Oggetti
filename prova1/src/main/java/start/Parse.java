@@ -17,5 +17,4 @@ public interface Parse {
 	//Metodo di parsing per Money.
 	ArrayList<ArrayList<Float>> Scan(String ValueName, ArrayList<String> Table);
 	
-
 }

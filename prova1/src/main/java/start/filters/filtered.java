@@ -14,6 +14,4 @@ public class filtered {
 		this.value = value;
 		this.condition = condition;
 	}
-	
-
 }
