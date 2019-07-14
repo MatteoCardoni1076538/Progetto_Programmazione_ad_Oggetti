@@ -1,10 +1,10 @@
 package start.data;
 
 public class Quadruplet {
-	private String name = new String();
+	public String name = new String();
 	private Float MEUR;
-	private Float GDP;
-	private int year;
+	public Float GDP;
+	public int year;
 
 	public Quadruplet(String name, Float MEUR, Float GDP, int year) {
 		this.name = name;

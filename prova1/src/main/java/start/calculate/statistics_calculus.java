@@ -22,9 +22,10 @@ public class statistics_calculus extends start.data.Associate {
 	DescriptiveStatistics stats_meur = new DescriptiveStatistics();
 	DescriptiveStatistics stats_gdp = new DescriptiveStatistics();
 	ArrayList<statistic_years> matrix2 = new ArrayList<statistic_years>();
+	ArrayList<Integer> yrs;
 
-	@RequestMapping("/stats")
-	public String calculate() {
+
+	public ArrayList<statistic_years> calculate() {
 		for(int e = 0; e < Y.size(); e = e + 1) {
 			for(int i = 0; i < S.size(); i = i + 1) {
 				stats_meur.addValue(MEUR.get(i).get(e));
@@ -51,6 +52,13 @@ public class statistics_calculus extends start.data.Associate {
 			stats_gdp.clear();
 
 		}
+		return(matrix2);
+	}
+
+
+	@RequestMapping("/stats")
+	public String stats_converter() {
+		calculate();
 		Gson output1 = new Gson();
 		String temp1 = output1.toJson(matrix2);
 		return(temp1);

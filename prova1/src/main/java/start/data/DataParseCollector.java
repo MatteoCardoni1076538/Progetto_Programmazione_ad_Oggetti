@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-public class DataParseCollector implements Main.Parse {
+public class DataParseCollector implements start.Parse {
 
 
 	private ArrayList<Integer> Years_int = new ArrayList<Integer>();

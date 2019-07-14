@@ -35,16 +35,26 @@ public class Associate extends DataParseCollector {
 	ArrayList<Quadruplet> matrix = new ArrayList<Quadruplet>();
 
 
-	@RequestMapping("/data")
-	public String matrixCreation() {
-		Gson output = new Gson();
+	public ArrayList<Quadruplet> matrixCreation() {
 		for (int i = 0; i < SArray.size(); i++) {
 			for (int j = 0; j < Y.size(); j++) {
 				Quadruplet cell = new Quadruplet(SArray.get(i),GDP.get(i).get(j),MEUR.get(i).get(j),Y.get(j));
 				matrix.add(cell);
 			}
 		}
+		
+		return(matrix);
+		
+	}
+	@RequestMapping("/data")
+	public String data_converter() {
+		matrixCreation();
+		Gson output = new Gson();
 		String temp = output.toJson(matrix);
 		return(temp);
 	}
+	
+	
+	
+	
 }
