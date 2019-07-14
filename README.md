@@ -1,5 +1,4 @@
 # Progetto_Programmazione_ad_Oggetti
-Progetto di Matteo Cardoni e Saverio Pellegrini
 
 
 Il programma prende in ingresso un CSV riguardante i dati di milioni di euro (MEUR) e prodotto interno lordo (GDP) relativo ai paesi dell’unione europea con frequenza annuale.
