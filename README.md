@@ -19,13 +19,13 @@ La sottoclasse Associate contiene il metodo per il download del file CSV. Associ
 Associate contiene inoltre il metodo data_coverter, che mediante chiama matrixCreation, trasforma la matrice in un JSON e tramite API REST restituisce i dati (in formato JSON) all’indirizzo /association/data.
 
 Le statistiche relative ai dati sono effettuate nella classe statistics_calculus, sottoclasse di Associate. Questa classe restituisce, per ciascun anno e relativamente a MEUR e GDP:
-•	avg\n 
-•	min\n
-•	max\n
-•	dev\n
-•	std\n
-•	sum\n
-•	count\n
+•	avg<br/>
+•	min<br/>
+•	max<br/>
+•	dev<br/>
+•	std<br/>
+•	sum<br/>
+•	count<br/>
 I dati vengono restituiti in un ArrayList di oggetti della classe statistic_years, che contiene gli attributi elencati sopra.
 statistic_calculus contiene anche il metodo per la restituizione delle suddette statistiche in formato JSON tramite API REST all’indirizzo /calculations/stats.
 
