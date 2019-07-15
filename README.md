@@ -36,4 +36,4 @@ In questo caso i dati filtrati sono restituiti in formato JSON tramite API REST 
 Se invece vengono inseriti 2 parametri vengono selezionati i valori dei GDP superiori a un primo valore soglia e contemporaneamente inferiori ad un secondo valore soglia.
 In questo secondo caso i dati filtrati sono restituiti all’indirizzo /filter/gdp.
 
-![Alt text](Desktop/Activity_diagram.png)
+![](Activity_diagram.png)
