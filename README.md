@@ -8,17 +8,17 @@ Il programma viene avviato dalla classe Application che funge da Sping Boot Appl
 Una della classi richiamate da Application è la classe Associate, che eredita la superclasse DataParseCollector. 
 DataParseCollector implementa l’interfaccia Parse, che dichiara i metodi per il parsing dei dati.
 
-Questi metodi permettono di:
-•	effettuare il parsing del CSV ottenendo ogni riga come stringa e salvandole in un ArrayList
-•	effettuare il parsing della prima riga del CSV ottenedo un ArrayList di Integer, corrispondenti agli anni a cui sono relativi i dati
-•	ottiene la lista degli stati in un TreeSet di Stringhe
-•	ottenere la matrice contenente i MEUR corrispondenti a ciascun anno e ciascuno stato
-•	ottenere la matrice contenente i GDP corrispondenti a ciascun anno e ciascuno stato
+Questi metodi permettono di:<br/>
+•	effettuare il parsing del CSV ottenendo ogni riga come stringa e salvandole in un ArrayList<br/>
+•	effettuare il parsing della prima riga del CSV ottenedo un ArrayList di Integer, corrispondenti agli anni a cui sono relativi i dati<br/>
+•	ottiene la lista degli stati in un TreeSet di Stringhe<br/>
+•	ottenere la matrice contenente i MEUR corrispondenti a ciascun anno e ciascuno stato<br/>
+•	ottenere la matrice contenente i GDP corrispondenti a ciascun anno e ciascuno stato<br/>
 
 La sottoclasse Associate contiene il metodo per il download del file CSV. Associate contiene anche il metodo matrixCreation, che crea un ArrayList di oggetti della classe Quadruplet, che contiene gli attributi di nome del Paese, anno a cui sono riferiti i dati e MEUR e GDP relativi all’anno in questione. 
 Associate contiene inoltre il metodo data_coverter, che mediante chiama matrixCreation, trasforma la matrice in un JSON e tramite API REST restituisce i dati (in formato JSON) all’indirizzo /association/data.
 
-Le statistiche relative ai dati sono effettuate nella classe statistics_calculus, sottoclasse di Associate. Questa classe restituisce, per ciascun anno e relativamente a MEUR e GDP:
+Le statistiche relative ai dati sono effettuate nella classe statistics_calculus, sottoclasse di Associate. Questa classe restituisce, per ciascun anno e relativamente a MEUR e GDP:<br/>
 •	avg<br/>
 •	min<br/>
 •	max<br/>
