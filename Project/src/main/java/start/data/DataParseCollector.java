@@ -8,7 +8,9 @@ import java.util.TreeSet;
 
 public class DataParseCollector implements start.Parse {
 
-
+	String link = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1/data/comp_mare_sa_x?format=csv&compressed=false";
+	File file = new File("CSV.csv");
+	
 	private ArrayList<Integer> Years_int = new ArrayList<Integer>();
 	//private String Line;
 	//private ArrayList<String> Table = new ArrayList<String>();
@@ -20,6 +22,13 @@ public class DataParseCollector implements start.Parse {
 	private ArrayList<ArrayList<Float>> cash = new ArrayList<ArrayList<Float>>();
 
 
+	
+	public File down() {
+		start.DownloadCSV download = new start.DownloadCSV(link, file);
+		download.method();
+		return file;
+	}
+	
 	//Riferendosi all'interfaccia di Parse, crea l'array di righe a partire dal CSV.
 	public ArrayList<String> CreateLines(File input_file) {
 
@@ -109,8 +118,7 @@ public class DataParseCollector implements start.Parse {
 		}
 		
 	}
-	
-	
+
 
 }
 

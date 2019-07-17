@@ -10,7 +10,7 @@ public class retrieveYears{
 	}
 	
 	public void checkYears() throws myExceptionYears{
-		if ((year1 < 2000) || (year1 > 2017) || (year2 < 2000) || (year2 > 2017) || (year1 == year2)) {
+		if ((year1 < 2000) || (year1 > 2017) || (year2 < 2000) || (year2 > 2017)) {
 			throw new myExceptionYears();
 		}
 	}

@@ -1,10 +1,12 @@
 package start.data;
 
 public class Quadruplet {
-	public String name = new String();
-	public Float MEUR;
-	public Float GDP;
-	public int year;
+	private String name = new String();
+	private Float MEUR;
+	private Float GDP;
+	private Integer year;
+
+	
 
 	public Quadruplet(String name, Float MEUR, Float GDP, int year) {
 		this.name = name;
@@ -12,7 +14,23 @@ public class Quadruplet {
 		this.GDP = GDP;
 		this.year = year;
 	}
+	
 
+	public String getName() {
+		return name;
+	}
+	
+	public Float getMEUR() {
+		return MEUR;
+	}
+	
+	public Float getGDP() {
+		return GDP;
+	}
+	
+	public Integer getYear() {
+		return year;
+	}
 
 	@Override
 	public String toString() {

@@ -8,9 +8,19 @@ public class retrieveTreshold {
 		this.tresh1 = tresh1;
 		this.tresh2 = tresh2;
 	}
+	
+	public retrieveTreshold(int tresh1) {
+		this.tresh1 = tresh1;
+	}
+	
+	public void checkTreshold1Value() throws myExceptionTreshold{
+		if (tresh1 < 0) {
+			throw new myExceptionTreshold();
+		}
+	}
 
-	public void checkTreshold() throws myExceptionTreshold{
-		if (tresh1 == tresh2) {
+	public void checkTreshold2Values() throws myExceptionTreshold{
+		if ((tresh1 < 0) || (tresh2 < 0)) {
 			throw new myExceptionTreshold();
 		}
 	}

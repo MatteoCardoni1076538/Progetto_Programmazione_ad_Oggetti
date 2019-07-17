@@ -1,7 +1,9 @@
 package start.data;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeSet;
 
 import org.springframework.stereotype.Controller;
@@ -14,38 +16,31 @@ import com.google.gson.Gson;
 @RequestMapping("/association")
 public class Associate extends DataParseCollector {
 
-	String link = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1/data/comp_mare_sa_x?format=csv&compressed=false";
-	File file = new File("C:\\Users\\matte\\Documents\\Università\\Programmazione ad Oggetti\\Progetto\\CSV.csv");
+	private File file = down();
 
-	public File down() {
+	private ArrayList<String> Lines = CreateLines(file);
+	private ArrayList<Integer> Y = Scan(getLines().get(0));
+	private TreeSet<String> S = Scan(getLines());
+	private ArrayList<ArrayList<Float>> MEUR = Scan("MEUR_KP_PRE", getLines());
+	private ArrayList<ArrayList<Float>> GDP = Scan("PC_GDP", getLines());
 
-		Read.DownloadCSV download = new Read.DownloadCSV(link, file);
-		download.method();
-		return file;
-	}
+	private ArrayList<String> SArray = new ArrayList<String>(getS());
+	private ArrayList<Quadruplet> matrix = new ArrayList<Quadruplet>();
 
-	public ArrayList<String> Lines1 = super.CreateLines(file);
-	public ArrayList<Integer> Y = super.Scan(Lines.get(0));
-	public TreeSet<String> S = super.Scan(Lines);
-	public ArrayList<ArrayList<Float>> MEUR = super.Scan("MEUR_KP_PRE", Lines1);
-	public ArrayList<ArrayList<Float>> GDP = super.Scan("PC_GDP", Lines1);
-
-
-	ArrayList<String> SArray = new ArrayList<String>(S);
-	ArrayList<Quadruplet> matrix = new ArrayList<Quadruplet>();
 
 
 	public ArrayList<Quadruplet> matrixCreation() {
-		for (int i = 0; i < SArray.size(); i++) {
-			for (int j = 0; j < Y.size(); j++) {
-				Quadruplet cell = new Quadruplet(SArray.get(i),GDP.get(i).get(j),MEUR.get(i).get(j),Y.get(j));
+		for (int i = 0; i < getSArray().size(); i++) {
+			for (int j = 0; j < getY().size(); j++) {
+				Quadruplet cell = new Quadruplet(getSArray().get(i),getGDP().get(i).get(j),getMEUR().get(i).get(j),getY().get(j));
 				matrix.add(cell);
 			}
 		}
-		
+
 		return(matrix);
-		
+
 	}
+
 	@RequestMapping("/data")
 	public String data_converter() {
 		matrixCreation();
@@ -53,8 +48,69 @@ public class Associate extends DataParseCollector {
 		String temp = output.toJson(matrix);
 		return(temp);
 	}
-	
-	
-	
-	
+
+	@RequestMapping("/metadata")
+	public String metadata() throws NoSuchFieldException, SecurityException {
+
+		ArrayList<Quadruplet> matrix = matrixCreation();
+		String value1 = matrix.get(0).getName().getClass().getSimpleName();
+		String value2 = matrix.get(0).getYear().getClass().getSimpleName();
+		String value3 = matrix.get(0).getMEUR().getClass().getSimpleName();
+		String value4 = matrix.get(0).getGDP().getClass().getSimpleName();
+
+		metadatas meta1 = new metadatas(value1, value2, value3, value4);
+		Gson output1 = new Gson();
+		String temp1 = output1.toJson(meta1);
+		return(temp1);
+
+	}
+
+	public ArrayList<Integer> getY() {
+		return Y;
+	}
+
+	public void setY(ArrayList<Integer> y) {
+		Y = y;
+	}
+
+	public TreeSet<String> getS() {
+		return S;
+	}
+
+	public void setS(TreeSet<String> s) {
+		S = s;
+	}
+
+	public ArrayList<ArrayList<Float>> getMEUR() {
+		return MEUR;
+	}
+
+	public void setMEUR(ArrayList<ArrayList<Float>> mEUR) {
+		MEUR = mEUR;
+	}
+
+	public ArrayList<ArrayList<Float>> getGDP() {
+		return GDP;
+	}
+
+	public void setGDP(ArrayList<ArrayList<Float>> gDP) {
+		GDP = gDP;
+	}
+
+	public ArrayList<String> getLines() {
+		return Lines;
+	}
+
+	public void setLines(ArrayList<String> lines) {
+		Lines = lines;
+	}
+
+	public ArrayList<String> getSArray() {
+		return SArray;
+	}
+
+	public void setSArray(ArrayList<String> sArray) {
+		SArray = sArray;
+	}
+
 }
