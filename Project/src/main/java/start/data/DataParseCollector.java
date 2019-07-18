@@ -6,30 +6,34 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+//Classe dedicata alla definizione dei metodi dell'interfaccia Parse. Questa classe si dedica al download e salvataggio del file, ed al parsing
+//dei dati.
 public class DataParseCollector implements start.Parse {
-
+	
+	//URL da cui si scarica il file .csv.
 	String link = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1/data/comp_mare_sa_x?format=csv&compressed=false";
+	//Directory dove il codice salva il file scaricato. Coincide con quella del progetto (Project).
 	File file = new File("CSV.csv");
 	
 	private ArrayList<Integer> Years_int = new ArrayList<Integer>();
-	//private String Line;
-	//private ArrayList<String> Table = new ArrayList<String>();
+	
 	ArrayList<String> Lines = new ArrayList<String>();
 	private TreeSet<String> Names = new TreeSet<String>();
-	//private ArrayList<String> InputTable = new ArrayList<String>();
 	private ArrayList<ArrayList<Float>> cash1 = new ArrayList<ArrayList<Float>>();
 	private ArrayList<ArrayList<Float>> cash2 = new ArrayList<ArrayList<Float>>();
-	private ArrayList<ArrayList<Float>> cash = new ArrayList<ArrayList<Float>>();
 
 
-	
+	//Metodo che richiama il metodo dentro la classe DownloadCSV, che ritorna il file "popolato", che sarà passato ai successivi metodi per il parsing.
 	public File down() {
 		start.DownloadCSV download = new start.DownloadCSV(link, file);
 		download.method();
 		return file;
 	}
 	
-	//Riferendosi all'interfaccia di Parse, crea l'array di righe a partire dal CSV.
+	//Questo metodo è il primo passo del parsing.
+	//L'algoritmo consiste nel fare la scansiona riga per riga utilizzando la classe Scanner ed il relativo metodo useDelimiter, che permette
+	//di identificare la fine della riga, tramite l'identificatore \n.
+	//In questo modo si crea un array di stringhe, in cui ogni cella contiene una stringa che è relativa ad una riga.
 	public ArrayList<String> CreateLines(File input_file) {
 
 		try {
@@ -42,10 +46,16 @@ public class DataParseCollector implements start.Parse {
 		}
 		catch(FileNotFoundException exeption) {	
 		}
-		return(Lines);
+		return(Lines); //Lines è l'array di stringhe. Come detto ogni cella contiene una righe del file in ingresso.
 	}
 
-	//Definizione di Metodo per Years.
+	//Definizione di Metodo per il parsing degli anni.
+	//Gli anni sono contenuti solo nella prima riga del file, perciò per quanto detto per il metodo sopra, in ingresso alla funzione
+	//è sufficiente dare una stringa, che rappresenta appunto la prima riga del file.
+	//L'algoritmo prevede l'individuazione degli anni, tenendo conto che sono tutti separati da una virgola, e la trasformazione tramite la funzione 
+	//parseInt delle stringhe nei corrispondenti numeri. Visto che la riga contiene nella parte iniziale anche parole, 
+	//il try/catch è stato utilizzato affinchè se il programma incontra parole, al posto di stringhe rappresentanti numeri, 
+	//salta al carattere successivo (definito dal delimitatore con useDelimiter).
 	public ArrayList<Integer> Scan(String Line){
 		Scanner scanner = new Scanner(Line);
 		scanner.useDelimiter(",|;");
@@ -60,11 +70,16 @@ public class DataParseCollector implements start.Parse {
 			catch(NumberFormatException e) {
 			}
 		}
-		//System.out.print("\n" + Years_int);
+	
 		scanner.close();
 		return(Years_int);
 	}
-	//Definizione di metodo per State
+	//Definizione di metodo per il parsing degli stati.
+	//In questo caso l'ingresso alla funzione è tutto il file, trasformato in array di righe tramite il metodo precedentemente definito.
+	//La sigla identificativa del nome dello stato si trova tra due punti e virgola, e ce ne è una per ogni cella (riga) dell'array,
+	//perciò si è usata la funzione split per identificare il carattere.
+	//E' importante notare la struttura dati in uscita dal metodo. Si è usato un TreeSet perchè nel file le sigle sono ripetute due volte,
+	//ed il TreeSet non ammette ripetizioni.
 	public TreeSet<String> Scan(ArrayList<String> Table) {
 
 		for(int i = 1; i < Table.size(); i++) {
@@ -72,11 +87,15 @@ public class DataParseCollector implements start.Parse {
 			Names.add(parts[1]);
 
 		}
-		//System.out.println("\n\n" + Names);
 		return Names;
 	}
 
-	//Definizione di metodo per Money.
+	//Definizione di metodo per MEUR e GDP.
+	//L'algoritmo è lo stesso per entrambi i valori, quello che cambia è ValueName, che permette di ricercare i MEUR o i GDP,
+	//a seconda della stringa che si inserisce. Da quest'ultima dipende anche il valore di ritorno ("cash1", "cash2").
+	//Ogni valore è separato da una virgola, ed è di tipo Float.
+	//L'algoritmo è molto simile a quelli sopra, utilizzando sempre la funzione split, e fornendo in ingresso al metodo tutto il file,
+	//suddiviso in righe con l'array di stringhe creato dal metodo CreateLines().
 	public ArrayList<ArrayList<Float>> Scan(String ValueName, ArrayList<String> InputTable) {
 
 		for(int i = 1; i < InputTable.size(); i++) {

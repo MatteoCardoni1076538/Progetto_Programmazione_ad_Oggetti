@@ -1,8 +1,8 @@
 package start.filters;
 
 public class retrieveTreshold {
-	int tresh1;
-	int tresh2;
+	private int tresh1;
+	private int tresh2;
 	
 	public retrieveTreshold(int tresh1, int tresh2) {
 		this.tresh1 = tresh1;

@@ -1,11 +1,11 @@
 package start.filters;
 
 public class filtered {
-	String states;
-	String logical;
-	int year;
-	double value;
-	String condition;
+	private String states;
+	private String logical;
+	private int year;
+	private double value;
+	private String condition;
 	
 	public filtered(String states, String logical, int year, double value, String condition) {
 		this.states = states;

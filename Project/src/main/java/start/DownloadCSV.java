@@ -16,16 +16,14 @@ public class DownloadCSV {
 	public File out; //File di output che sarà salvato nel pc, contenente il file di testo scaricato.
 	
 	
-	//Costruttore della classe Download.
-	
 	public DownloadCSV(String link, File out) {
 		this.link = link;
 		this.out = out;
 	}
 
-	
+	//Metodo che scarica il file dall'URL in ingresso e lo salva nella directory che sarà specificata successivamente (Nella classe DataParseCollector 
+	//si implementa questo metodo, qui si specificano URL specifico e Directory specifica).
 	public void method() {
-		
 		try {
 			URL url = new URL(link); 
 			HttpURLConnection http = (HttpURLConnection)url.openConnection();
@@ -40,7 +38,6 @@ public class DownloadCSV {
 			bout.close();
 			in.close();
 		}
-
 		catch(IOException ex) {
 			ex.printStackTrace();
 		}

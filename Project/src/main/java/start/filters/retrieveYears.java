@@ -1,8 +1,8 @@
 package start.filters;
 
 public class retrieveYears{
-	int year1;
-	int year2;
+	private int year1;
+	private int year2;
 	
 	public retrieveYears(int year1, int year2) {
 		this.year1 = year1;

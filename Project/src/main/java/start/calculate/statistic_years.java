@@ -15,7 +15,6 @@ public class statistic_years {
 	private double dev_std_g;
 	private double sum_g;
 	private long count_g;
-	public String index;
 
 	public statistic_years(int year, double mean_m, double min_m, double max_m, double dev_std_m, double sum_m, long count_m, double mean_g, double min_g, double max_g, double dev_std_g, double sum_g, long count_g) {
 		this.year = year;
