@@ -9,30 +9,30 @@ import java.util.TreeSet;
 //Classe dedicata alla definizione dei metodi dell'interfaccia Parse. Questa classe si dedica al download e salvataggio del file, ed al parsing
 //dei dati.
 public class DataParseCollector implements start.Parse {
-	
+
 	//URL da cui si scarica il file .csv.
 	String link = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination/sdmx/2.1/data/comp_mare_sa_x?format=csv&compressed=false";
 	//Directory dove il codice salva il file scaricato. Coincide con quella del progetto (Project).
 	File file = new File("CSV.csv");
-	
+
 	private ArrayList<Integer> Years_int = new ArrayList<Integer>();
-	
+
 	ArrayList<String> Lines = new ArrayList<String>();
 	private TreeSet<String> Names = new TreeSet<String>();
 	private ArrayList<ArrayList<Float>> cash1 = new ArrayList<ArrayList<Float>>();
 	private ArrayList<ArrayList<Float>> cash2 = new ArrayList<ArrayList<Float>>();
 
 
-	//Metodo che richiama il metodo dentro la classe DownloadCSV, che ritorna il file "popolato", che sarà passato ai successivi metodi per il parsing.
+	//Metodo che richiama il metodo dentro la classe DownloadCSV. Ritorna il file "popolato", che sarà passato ai successivi metodi per il parsing.
 	public File down() {
 		start.DownloadCSV download = new start.DownloadCSV(link, file);
 		download.method();
 		return file;
 	}
-	
+
 	//Questo metodo è il primo passo del parsing.
-	//L'algoritmo consiste nel fare la scansiona riga per riga utilizzando la classe Scanner ed il relativo metodo useDelimiter, che permette
-	//di identificare la fine della riga, tramite l'identificatore \n.
+	//L'algoritmo consiste nel fare la scansione riga per riga, utilizzando la classe Scanner ed il relativo metodo useDelimiter, che permette
+	//di identificare la fine della riga con il terminatore \n.
 	//In questo modo si crea un array di stringhe, in cui ogni cella contiene una stringa che è relativa ad una riga.
 	public ArrayList<String> CreateLines(File input_file) {
 
@@ -52,10 +52,9 @@ public class DataParseCollector implements start.Parse {
 	//Definizione di Metodo per il parsing degli anni.
 	//Gli anni sono contenuti solo nella prima riga del file, perciò per quanto detto per il metodo sopra, in ingresso alla funzione
 	//è sufficiente dare una stringa, che rappresenta appunto la prima riga del file.
-	//L'algoritmo prevede l'individuazione degli anni, tenendo conto che sono tutti separati da una virgola, e la trasformazione tramite la funzione 
-	//parseInt delle stringhe nei corrispondenti numeri. Visto che la riga contiene nella parte iniziale anche parole, 
-	//il try/catch è stato utilizzato affinchè se il programma incontra parole, al posto di stringhe rappresentanti numeri, 
-	//salta al carattere successivo (definito dal delimitatore con useDelimiter).
+	//L'algoritmo prevede l'individuazione degli anni, tenendo conto che sono tutti separati da una virgola, e la trasformazione tramite il metodo 
+	//parseInt delle stringhe nei corrispondenti numeri. Visto che la riga contiene, nella parte iniziale, anche parole, 
+	//il try/catch è stato utilizzato affinchè quando il programma incontra parole salti al carattere successivo (definito dal delimitatore con useDelimiter).
 	public ArrayList<Integer> Scan(String Line){
 		Scanner scanner = new Scanner(Line);
 		scanner.useDelimiter(",|;");
@@ -70,7 +69,7 @@ public class DataParseCollector implements start.Parse {
 			catch(NumberFormatException e) {
 			}
 		}
-	
+
 		scanner.close();
 		return(Years_int);
 	}
@@ -114,28 +113,27 @@ public class DataParseCollector implements start.Parse {
 						catch(NumberFormatException e) {
 						}
 					}
-					
+
 					if (ValueName == "MEUR_KP_PRE") {
 						cash1.add(Temp);	
 					}
-					
+
 					else {
 						cash2.add(Temp);	
 					}
-					
+
 				}
 			}
 			scanner.close();
 		}
-		//System.out.println("\n\n" + cash);
 		if (ValueName == "MEUR_KP_PRE") {
 			return cash1;	
 		}
-		
+
 		else {
 			return cash2;	
 		}
-		
+
 	}
 
 

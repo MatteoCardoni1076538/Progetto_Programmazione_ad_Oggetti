@@ -2,20 +2,9 @@ package start.calculate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
-import java.util.TreeSet;
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.google.gson.Gson;
-
-import start.data.Associate;
-
 import org.apache.commons.math3.stat.descriptive.*;
 
 
@@ -23,7 +12,7 @@ import org.apache.commons.math3.stat.descriptive.*;
 @RestController
 @RequestMapping("/calculations")
 public class statistics_calculus extends start.data.Associate {
-	
+
 	private DescriptiveStatistics stats_meur = new DescriptiveStatistics();
 	private DescriptiveStatistics stats_gdp = new DescriptiveStatistics();
 	private ArrayList<statistic_years> matrix2 = new ArrayList<statistic_years>();
@@ -32,9 +21,9 @@ public class statistics_calculus extends start.data.Associate {
 
 	//Metodo che calcola i parametri statistici, sia sui MEUR che GDP.
 	public ArrayList<statistic_years> calculate() {
-		//Un singolo valore di MEUR/GDP è individuato dal relativo anno e stato. I cicli for servono ad identificare lo specifico valore sullo
+		//Un singolo valore di MEUR/GDP è individuato dal relativo anno e stato. I cicli for servono ad identificare lo specifico valore su
 		//anno e stato.
-		
+
 		//scorrimento sugli anni.
 		for(int e = 0; e < getY().size(); e = e + 1) {
 			//scorrimento sugli stati.
@@ -59,7 +48,7 @@ public class statistics_calculus extends start.data.Associate {
 			double sum_g = stats_meur.getSum();
 			long count_g = stats_meur.getN();
 
-			
+
 			//Creazione dell'array di oggetti, contenenti singolarmente tutte le statistiche di MEUR e GDP (stesso algoritmo utilizzato in Associate).
 			statistic_years cell_data_stats = new statistic_years(getY().get(e), mean_m, min_m, max_m, dev_std_m, sum_m, count_m, mean_g, min_g, max_g, dev_std_g, sum_g, count_g);
 			matrix2.add(cell_data_stats);

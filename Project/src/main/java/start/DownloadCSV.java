@@ -10,18 +10,18 @@ import java.net.URL;
 
 
 public class DownloadCSV {
-	
+
 	public String link; //Contiene il link all'url dove è salvato il CSV da decodificare. (URL ricavato dalla decodifica del JSON).
-	
+
 	public File out; //File di output che sarà salvato nel pc, contenente il file di testo scaricato.
-	
-	
+
+
 	public DownloadCSV(String link, File out) {
 		this.link = link;
 		this.out = out;
 	}
 
-	//Metodo che scarica il file dall'URL in ingresso e lo salva nella directory che sarà specificata successivamente (Nella classe DataParseCollector 
+	//Metodo che scarica il file dall'URL in ingresso e lo salva nella directory che sarà specificata successivamente (Nella classe DataParseCollector
 	//si implementa questo metodo, qui si specificano URL specifico e Directory specifica).
 	public void method() {
 		try {
@@ -41,10 +41,10 @@ public class DownloadCSV {
 		catch(IOException ex) {
 			ex.printStackTrace();
 		}
-		
-	}
-		
 
-	
+	}
+
+
+
 }
 

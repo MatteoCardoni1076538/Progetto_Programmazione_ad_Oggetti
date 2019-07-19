@@ -8,7 +8,7 @@ public class statistic_years {
 	private double dev_std_m;
 	private double sum_m;
 	private long count_m;
-	
+
 	public double mean_g;
 	private double min_g;
 	private double max_g;
@@ -24,7 +24,7 @@ public class statistic_years {
 		this.dev_std_m = dev_std_m;
 		this.sum_m = sum_m;
 		this.count_m = count_m;
-		
+
 		this.mean_g = mean_g;
 		this.min_g = min_g;
 		this.max_g = max_g;
@@ -32,8 +32,8 @@ public class statistic_years {
 		this.sum_g = sum_g;
 		this.count_g = count_g;
 	}
-	
-	
+
+
 }
 
 

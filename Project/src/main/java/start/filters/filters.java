@@ -44,12 +44,12 @@ public class filters extends start.calculate.statistics_calculus {
 				i = second_year;
 				j = first_year;
 			}
-			
+
 			//Algoritmo che esegue il filtraggio vero e proprio, dopo aver verificato la consistenza dei dati inseriti.
 			while(i != j+1) {
 				int index = getY().indexOf(i);
 				if(matrix3.get(index).mean_m > treshold) {
-					//Come già fatto, si crea un array di elementi del tipo filtered, contenenti il dato filtrato, con media dei MEUR relativa ed anno.
+					//Si crea un array di elementi del tipo filtered, contenenti il dato filtrato, con media dei MEUR relativa ed anno.
 					filtered cell_stats_filtered = new filtered("all", "$in ", matrix3.get(index).year, matrix3.get(index).mean_m, "$gt " + treshold);
 					matrix4.add(cell_stats_filtered);
 				}
@@ -80,10 +80,10 @@ public class filters extends start.calculate.statistics_calculus {
 		int j;
 
 		retrieveTreshold tresh = new retrieveTreshold(first_treshold, second_treshold);
-		//try/catch definiti in questo package.
+		//try/catch definiti in questo package, per evitare l'inserimento di valori di soglia negativi.
 		try {
 			tresh.checkTreshold2Values();
-			//Valutazione di qualle delle due treshold inserite è la maggiore
+			//Valutazione di quale delle due soglie inserite è la maggiore
 			if (first_treshold < second_treshold) {
 				i = first_treshold;
 				j = second_treshold;
@@ -110,6 +110,6 @@ public class filters extends start.calculate.statistics_calculus {
 		}
 	}
 }
-//N.B. i try/catch utilizzati sono definiti all'interno delle classi myExceptionTreshol e myExceptionYears, che fanno a loro volta utilizzo di
-// retriveTreshold e retriveYears.
+//N.B. i try/catch utilizzati sono definiti all'interno delle classi myExceptionTreshol e myExceptionYears, che fanno a loro volta utilizzo delle classi
+//retriveTreshold e retriveYears.
 
