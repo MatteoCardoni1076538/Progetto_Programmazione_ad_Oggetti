@@ -85,7 +85,7 @@ Gli indicatori riportati sul JSON in output all'indirizzo sono gli stessi che si
 
 Il diagramma delle attività è il seguente:<br/>
 
-![Activity_diagram](https://user-images.githubusercontent.com/52153086/61204222-ef5f3e80-a6ec-11e9-8c2c-3f235836ab20.png)
+![Activity_diagram_final](https://user-images.githubusercontent.com/52153086/61524672-331cb580-aa17-11e9-9b75-5bca39f82f13.png)
 
 Il diagramma delle classi è il seguente:<br/> 
 
