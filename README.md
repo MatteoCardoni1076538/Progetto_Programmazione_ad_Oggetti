@@ -89,6 +89,6 @@ Il diagramma delle attività è il seguente:<br/>
 
 Il diagramma delle classi è il seguente:<br/> 
 
-![Class_diagram](https://user-images.githubusercontent.com/52153086/61204405-6563a580-a6ed-11e9-93c7-ee9d7a00ae35.png)
+![Class_diagram_final](https://user-images.githubusercontent.com/52153086/61524450-c43f5c80-aa16-11e9-9043-bffc7d6d8c85.png)
 
 
